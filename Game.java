@@ -18,7 +18,6 @@ public class Game {
         String hiddenCard = dealerHand.get(0);
 
         while (true) {
-
             if (Deck.getHandValue(playerHand) > 21) {
                 playerBust = true;
                 dealerReveal = true;
@@ -33,7 +32,7 @@ public class Game {
                 Chips.playerChips += (Chips.playerBet * (1.5));
                 break;
             }
-
+            
             Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
             int choice = Main.getInput("1 - Hit   |   2 - Stay   > ");
             if (choice == 1) {
@@ -42,6 +41,7 @@ public class Game {
                 dealerReveal = true;
                 break;
             }
+            
         }
 
         if (playerBust == false) {
@@ -71,6 +71,7 @@ public class Game {
                 System.out.println("Dealer wins.");
                 Chips.playerChips -= Chips.playerBet;
             }
+            
         }
 
         System.out.println("Game over.");
@@ -89,5 +90,6 @@ public class Game {
                 return;
             }
         }
+        
     }
 }

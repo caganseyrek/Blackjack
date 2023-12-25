@@ -42,6 +42,7 @@ public class Deck {
     public static int getCardValue(String card) {
         String cardRank = card.split(" ")[0];
         int value = 0;
+        
         if ("JackQueenKing".contains(cardRank)) {
             value = 10;
         } else if (cardRank.equals("Ace")) {
@@ -50,17 +51,20 @@ public class Deck {
             value = values.get(cardRank);
         }
         return value;
+        
     }
 
     public static int getHandValue(ArrayList<String> deck) {
         int handValue = 0;
         int aceAmount = 0;
+        
         for (String card : deck) {
             handValue += getCardValue(card);
             if (card.contains("Ace")) {
                 aceAmount++;
             }
         }
+        
         if (handValue > 21) {
             while (aceAmount > 0) {
                 handValue -= 10;
@@ -70,13 +74,14 @@ public class Deck {
             }
         }
         return handValue;
+        
     }
 
-    public static void getStatus(ArrayList<String> dealer, ArrayList<String> player, String hiddenCard,
-            Boolean reveal) {
+    public static void getStatus(ArrayList<String> dealer, ArrayList<String> player, String hiddenCard, Boolean reveal) {
         System.out.println("\n");
         ArrayList<String> dealerHiddenHand = dealer;
         dealerHiddenHand.remove(hiddenCard);
+        
         if (reveal == false) {
             System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " (" + getHandValue(dealerHiddenHand) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
@@ -84,6 +89,7 @@ public class Deck {
             System.out.println("Dealer's Hand > " + dealer + " (" + getHandValue(dealer) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         }
+        
     }
 
     public static String getCardImage(String card) {

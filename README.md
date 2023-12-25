@@ -6,7 +6,6 @@ Please note that I made this project for learning and practising purposes. Codes
 
 [Source of images](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg)
 
-
 ## How to Play
 
  * In a given round, player's goal is to get a hand higher than the dealer's without going over 21. (That is called "busting")

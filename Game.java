@@ -6,6 +6,7 @@ public class Game {
 
     public static void startGame() {
         Chips.newBet();
+        
         ArrayList<String> playDeck = Deck.generateDeck();
         ArrayList<String> playerHand = new ArrayList<>();
         ArrayList<String> dealerHand = new ArrayList<>();

@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 public class Frame {
     public static JFrame frame = new JFrame();
 
-    // Work in progress
-
+    // Work in progress - currently not working
+    
     frame.setLayout(new BorderLayout(10, 5));
     frame.setSize(1200, 750);
     frame.setLocationRelativeTo(null);

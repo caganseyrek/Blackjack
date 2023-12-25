@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Deck {
     public static String[] ranks = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
     public static String[] suits = new String[] { "Hearts", "Diamonds", "Clubs", "Spades" };
-    
+
     public static HashMap<String, Integer> values = new HashMap<String, Integer>();
 
     static {

@@ -32,6 +32,7 @@ public class Game {
                 Chips.playerChips += (Chips.playerBet * (1.5));
                 break;
             }
+            
             Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
             int choice = Main.getInput("1 - Hit   |   2 - Stay   > ");
             if (choice == 1) {
@@ -41,6 +42,7 @@ public class Game {
                 break;
             }
         }
+        
         if (playerBust == false) {
             if (Deck.getHandValue(dealerHand) < 17) {
                 while (true) {
@@ -51,9 +53,11 @@ public class Game {
                 }
                 dealerReveal = true;
             }
+            
             System.out.println("\n\n");
             Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
             System.out.println("\n");
+            
             if (Deck.getHandValue(dealerHand) > 21) {
                 System.out.println("Dealer's hand went over 21. You win.");
                 Chips.playerChips += Chips.playerBet;

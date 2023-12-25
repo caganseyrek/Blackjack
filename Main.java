@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.plaf.ColorUIResource;
 
-public class Main{
+public class Main {
 
     public static JFrame frame = new JFrame();
     public static Scanner scanner = new Scanner(System.in);

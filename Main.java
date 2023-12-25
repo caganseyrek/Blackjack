@@ -7,7 +7,6 @@ import javax.swing.WindowConstants;
 import javax.swing.plaf.ColorUIResource;
 
 public class Main {
-
     public static JFrame frame = new JFrame();
     public static Scanner scanner = new Scanner(System.in);
 
@@ -39,7 +38,7 @@ public class Main {
         frame.setVisible(true);
         Deck.getCardImage(Deck.generateDeck().get(0));
         // FRAME
-
+        
         while (true) {
             System.out.println("\n\n");
             System.out.println("Chips: " + Chips.playerChips);

@@ -1,13 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.plaf.ColorUIResource;
 
 public class Frame {
-    
     // Work in progress
     public static void setFrame() {
         ArrayList<String> dealer = Game.dealerHand;

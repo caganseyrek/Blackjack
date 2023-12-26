@@ -87,7 +87,7 @@ public class Deck {
     public static String getCardImage(String card) {
         String cardRank = card.split(" ")[0].toLowerCase();
         String fileName = card.replaceAll(" ", "_").toLowerCase();
-        String path = "cards/" + cardRank + "/" + fileName + ".png";
+        String path = "Blackjack/cards/" + cardRank + "/" + fileName + ".png";
         return path;
     }
 }

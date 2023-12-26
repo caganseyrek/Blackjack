@@ -3,13 +3,14 @@ import java.util.ArrayList;
 public class Game {
     public static boolean playerBust = false;
     public static boolean dealerReveal = false;
-
+    
+    public static ArrayList<String> playerHand = new ArrayList<>();
+    public static ArrayList<String> dealerHand = new ArrayList<>();
+    
     public static void startGame() {
         Chips.newBet();
         
         ArrayList<String> playDeck = Deck.generateDeck();
-        ArrayList<String> playerHand = new ArrayList<>();
-        ArrayList<String> dealerHand = new ArrayList<>();
 
         playerHand.add(Deck.drawCard(playDeck));
         dealerHand.add(Deck.drawCard(playDeck)); // hidden card

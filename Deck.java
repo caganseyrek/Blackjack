@@ -6,7 +6,7 @@ public class Deck {
     public static String[] ranks = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
     public static String[] suits = new String[] { "Hearts", "Diamonds", "Clubs", "Spades" };
     public static HashMap<String, Integer> values = new HashMap<String, Integer>();
-    
+
     static {
         values.put("2", 2);
         values.put("3", 3);
@@ -70,20 +70,21 @@ public class Deck {
         }
         return handValue;
     }
-    
+
     public static void getStatus(ArrayList<String> dealer, ArrayList<String> player, String hiddenCard, Boolean reveal) {
         System.out.println("\n");
         ArrayList<String> dealerHiddenHand = dealer;
         dealerHiddenHand.remove(hiddenCard);
         if (reveal == false) {
-            System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " (" + getHandValue(dealerHiddenHand) + "pts)");
+            System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " ("
+                    + getHandValue(dealerHiddenHand) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         } else if (reveal == true) {
             System.out.println("Dealer's Hand > " + dealer + " (" + getHandValue(dealer) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         }
     }
-    
+
     public static String getCardImage(String card) {
         String cardRank = card.split(" ")[0].toLowerCase();
         String fileName = card.replaceAll(" ", "_").toLowerCase();

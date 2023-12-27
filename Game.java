@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
+    public static boolean gameStarted = false;
     public static boolean playerBust = false;
     public static boolean dealerReveal = false;
 
@@ -9,8 +10,8 @@ public class Game {
     public static ArrayList<String> dealerHand = new ArrayList<>();
 
     public static void startGame() {
-        resetGame();
         Chips.newBet();
+        gameStarted = true;
 
         ArrayList<String> playDeck = Deck.generateDeck();
 
@@ -38,6 +39,7 @@ public class Game {
             }
 
             Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
+            Frame.updateFrame();
             int choice = Main.getInput("1 - Hit   |   2 - Stay   > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
             if (choice == 1) {
                 playerHand.add(Deck.drawCard(playDeck));
@@ -47,6 +49,8 @@ public class Game {
             }
         }
 
+        dealerReveal = true;
+
         if (playerBust == false && Deck.getHandValue(dealerHand) < 17) {
             while (true) {
                 dealerHand.add(Deck.drawCard(playDeck));
@@ -54,7 +58,6 @@ public class Game {
                     break;
                 }
             }
-            dealerReveal = true;
         }
 
         System.out.println("\n\n");
@@ -77,7 +80,11 @@ public class Game {
         }
 
         System.out.println("Game over.");
-        resetGame();
+        playerHand.removeAll(playerHand);
+        dealerHand.removeAll(dealerHand);
+        playerBust = false;
+        dealerReveal = false;
+        gameStarted = false;
 
         while (true) {
             int replay = Main.getInput("1 - Return to main menu   |   2 - Exit the game   > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
@@ -89,16 +96,5 @@ public class Game {
                 return;
             }
         }
-    }
-
-    public static void resetGame() {
-        for (String card : dealerHand) {
-            dealerHand.remove(card);
-        }
-        for (String card : playerHand) {
-            playerHand.remove(card);
-        }
-        playerBust = false;
-        dealerReveal = false;
     }
 }

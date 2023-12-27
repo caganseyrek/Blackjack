@@ -76,8 +76,7 @@ public class Deck {
         ArrayList<String> dealerHiddenHand = dealer;
         dealerHiddenHand.remove(hiddenCard);
         if (reveal == false) {
-            System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " ("
-                    + getHandValue(dealerHiddenHand) + "pts)");
+            System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " (" + getHandValue(dealerHiddenHand) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         } else if (reveal == true) {
             System.out.println("Dealer's Hand > " + dealer + " (" + getHandValue(dealer) + "pts)");

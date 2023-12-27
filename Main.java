@@ -33,7 +33,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        Frame.updateFrame();
+        // Frame.updateFrame();
         while (true) {
             System.out.println("\n\n");
             System.out.println("Chips: " + Chips.playerChips);

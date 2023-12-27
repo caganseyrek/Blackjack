@@ -1,3 +1,4 @@
+/*
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -6,8 +7,10 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.ColorUIResource;
+*/
 
 public class Frame {
+    /*
     public static ArrayList<String> dealer = Game.dealerHand;
     public static ArrayList<String> player = Game.playerHand;
     public static JFrame frame = new JFrame("Blackjack");
@@ -109,4 +112,5 @@ public class Frame {
 
         }
     }
+    */
 }

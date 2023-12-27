@@ -14,7 +14,6 @@ public class Game {
         gameStarted = true;
 
         ArrayList<String> playDeck = Deck.generateDeck();
-
         playerHand.add(Deck.drawCard(playDeck));
         dealerHand.add(Deck.drawCard(playDeck)); // hidden card
         playerHand.add(Deck.drawCard(playDeck));
@@ -29,12 +28,14 @@ public class Game {
                 Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
                 System.out.println("Your hand went over 21. You lost.");
                 Chips.playerChips -= Chips.playerBet;
+                gameStarted = false;
                 break;
             } else if (Deck.getHandValue(playerHand) == 21) {
                 dealerReveal = true;
                 Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
                 System.out.println("Blackjack! You win.");
                 Chips.playerChips += (Chips.playerBet * (1.5));
+                gameStarted = false;
                 break;
             }
 
@@ -51,12 +52,12 @@ public class Game {
 
         dealerReveal = true;
 
-        if (playerBust == false && Deck.getHandValue(dealerHand) < 17) {
+        if (!playerBust && Deck.getHandValue(dealerHand) < 17 && gameStarted) {
             while (true) {
-                dealerHand.add(Deck.drawCard(playDeck));
                 if (Deck.getHandValue(dealerHand) >= 17) {
                     break;
                 }
+                dealerHand.add(Deck.drawCard(playDeck));
             }
         }
 
@@ -64,7 +65,7 @@ public class Game {
         Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
         System.out.println("\n");
 
-        if (playerBust == false) {
+        if (!playerBust && gameStarted) {
             if (Deck.getHandValue(dealerHand) > 21) {
                 System.out.println("Dealer's hand went over 21. You win.");
                 Chips.playerChips += Chips.playerBet;
@@ -80,8 +81,10 @@ public class Game {
         }
 
         System.out.println("Game over.");
+
         playerHand.removeAll(playerHand);
         dealerHand.removeAll(dealerHand);
+
         playerBust = false;
         dealerReveal = false;
         gameStarted = false;

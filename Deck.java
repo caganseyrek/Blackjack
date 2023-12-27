@@ -71,16 +71,20 @@ public class Deck {
         return handValue;
     }
 
-    public static void getStatus(ArrayList<String> dealer, ArrayList<String> player, String hiddenCard, Boolean reveal) {
+    public static void getStatus() {
         System.out.println("\n");
-        ArrayList<String> dealerHiddenHand = dealer;
-        dealerHiddenHand.remove(hiddenCard);
-        if (reveal == false) {
-            System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " (" + getHandValue(dealerHiddenHand) + "pts)");
+
+        ArrayList<String> dealer = Game.dealerHand;
+        ArrayList<String> player = Game.playerHand;
+        String hiddenCard = dealer.get(0);
+
+        if (Game.dealerReveal == false) {
+            dealer.remove(hiddenCard);
+            System.out.println("Dealer's Hand > " + "[Hidden] " + dealer + " (" + getHandValue(dealer) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
-        } else if (reveal == true) {
-            dealerHiddenHand.add(0, hiddenCard);
-            System.out.println("Dealer's Hand > " + dealerHiddenHand + " (" + getHandValue(dealer) + "pts)");
+            dealer.add(0, hiddenCard);
+        } else if (Game.dealerReveal == true) {
+            System.out.println("Dealer's Hand > " + dealer + " (" + getHandValue(dealer) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         }
     }

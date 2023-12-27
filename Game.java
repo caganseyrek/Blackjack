@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
-    public static boolean gameStarted = false;
+    public static boolean gameEnded = true;
     public static boolean playerBust = false;
     public static boolean dealerReveal = false;
 
@@ -11,7 +11,7 @@ public class Game {
 
     public static void startGame() {
         Chips.newBet();
-        gameStarted = true;
+        gameEnded = false;
 
         ArrayList<String> playDeck = Deck.generateDeck();
         playerHand.add(Deck.drawCard(playDeck));
@@ -19,28 +19,25 @@ public class Game {
         playerHand.add(Deck.drawCard(playDeck));
         dealerHand.add(Deck.drawCard(playDeck));
 
-        String hiddenCard = dealerHand.get(0);
-
         while (true) {
-            if (Deck.getHandValue(playerHand) > 21) {
+            if (Deck.getHandValue(dealerHand) > 21) {
                 playerBust = true;
                 dealerReveal = true;
-                Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
+                Deck.getStatus();
                 System.out.println("Your hand went over 21. You lost.");
                 Chips.playerChips -= Chips.playerBet;
-                gameStarted = false;
+                gameEnded = false;
                 break;
             } else if (Deck.getHandValue(playerHand) == 21) {
                 dealerReveal = true;
-                Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
+                Deck.getStatus();
                 System.out.println("Blackjack! You win.");
                 Chips.playerChips += (Chips.playerBet * (1.5));
-                gameStarted = false;
+                gameEnded = false;
                 break;
             }
 
-            Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
-            Frame.updateFrame();
+            Deck.getStatus();
             int choice = Main.getInput("1 - Hit   |   2 - Stay   > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
             if (choice == 1) {
                 playerHand.add(Deck.drawCard(playDeck));
@@ -52,7 +49,7 @@ public class Game {
 
         dealerReveal = true;
 
-        if (!playerBust && Deck.getHandValue(dealerHand) < 17 && gameStarted) {
+        if (!playerBust && Deck.getHandValue(dealerHand) < 17 && !gameEnded) {
             while (true) {
                 if (Deck.getHandValue(dealerHand) >= 17) {
                     break;
@@ -61,11 +58,10 @@ public class Game {
             }
         }
 
-        System.out.println("\n\n");
-        Deck.getStatus(dealerHand, playerHand, hiddenCard, dealerReveal);
+        Deck.getStatus();
         System.out.println("\n");
 
-        if (!playerBust && gameStarted) {
+        if (!playerBust && !gameEnded) {
             if (Deck.getHandValue(dealerHand) > 21) {
                 System.out.println("Dealer's hand went over 21. You win.");
                 Chips.playerChips += Chips.playerBet;
@@ -82,12 +78,9 @@ public class Game {
 
         System.out.println("Game over.");
 
-        playerHand.removeAll(playerHand);
-        dealerHand.removeAll(dealerHand);
-
         playerBust = false;
         dealerReveal = false;
-        gameStarted = false;
+        gameEnded = true;
 
         while (true) {
             int replay = Main.getInput("1 - Return to main menu   |   2 - Exit the game   > ", new ArrayList<Integer>(Arrays.asList(1, 2)));

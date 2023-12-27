@@ -79,14 +79,15 @@ public class Deck {
             System.out.println("Dealer's Hand > " + "[Hidden] " + dealerHiddenHand + " (" + getHandValue(dealerHiddenHand) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         } else if (reveal == true) {
-            System.out.println("Dealer's Hand > " + dealer + " (" + getHandValue(dealer) + "pts)");
+            dealerHiddenHand.add(0, hiddenCard);
+            System.out.println("Dealer's Hand > " + dealerHiddenHand + " (" + getHandValue(dealer) + "pts)");
             System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
         }
     }
 
     public static String getCardImage(String card) {
-        String cardRank = card.split(" ")[0].toLowerCase();
-        String fileName = card.replaceAll(" ", "_").toLowerCase();
+        String cardRank = card.toLowerCase().split(" ")[0];
+        String fileName = card.toLowerCase().replaceAll(" ", "_");
         String path = "Blackjack/cards/" + cardRank + "/" + fileName + ".png";
         return path;
     }

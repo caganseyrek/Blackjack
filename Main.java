@@ -33,9 +33,8 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        // Frame.updateFrame();
         while (true) {
-            System.out.println("\n\n");
+            System.out.println("\n");
             System.out.println("Chips: " + Chips.playerChips);
             System.out.println("\n1. Start a new blackjack game");
             System.out.println("2. Add chips to balance");

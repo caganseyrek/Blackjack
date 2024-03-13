@@ -27,12 +27,12 @@ After that, you can run the game with this command:
 java Main
 ```
 
-### Python Test Code
+### Python Version
 
-For python version, navigate to their location in terminal using `cd` command. After that you can run this command to run the game:
+For python version, first install `Main.py` and navigate to it's location in terminal using `cd` command. After that you can run this command to run the game:
 
 ```bash
-python main.py
+python Main.py
 ```
 
 ***

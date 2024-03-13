@@ -1,6 +1,6 @@
 # Blackjack Game
 
-A simple blackjack game made using java.
+A simple blackjack game made using Java (And a prototype Python version). It is currently played on the terminal but there is an incomplete version with UI.
 
 Frame.java file in the test_files folder is currently is not finished yet and may not work. But it does not interfere with other files. Simply leaving test_files folder
 out before running the project should be enough for trying the other files and the game itself.
@@ -9,9 +9,35 @@ Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:
 
 Please note that I made this project for learning and practising purposes. Codes may be inefficient, written incorrectly or entirely may not work.
 
-----
+***
 
-### How to Play
+## Installation and Setup
+
+You only need to install `Main.java`, `Game.java`, `Deck.java` and `Chips.java`. You don't need to install files in the folders in order to play.
+
+After you install the files, navigate to their location in terminal using `cd` command. After that, you can run this command to compile the code:
+
+```bash
+javac Main.java
+```
+
+After that, you can run the game with this command:
+
+```bash
+java Main
+```
+
+### Python Test Code
+
+For python version, navigate to their location in terminal using `cd` command. After that you can run this command to run the game:
+
+```bash
+python main.py
+```
+
+***
+
+## How to Play Blackjack
 
  * In a given round, player's goal is to get a hand higher than the dealer's without going over 21. (That is called "busting")
    

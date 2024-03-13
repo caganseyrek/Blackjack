@@ -2,12 +2,9 @@
 
 A simple blackjack game made using Java (And a prototype Python version). It is currently played on the terminal but there is an incomplete version with UI.
 
-Frame.java file in the test_files folder is currently is not finished yet and may not work. But it does not interfere with other files. Simply leaving test_files folder
-out before running the project should be enough for trying the other files and the game itself.
-
 Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg)
 
-Please note that I made this project for learning and practising purposes. Codes may be inefficient, written incorrectly or entirely may not work.
+>Please note that I made this project for learning and practising purposes. Codes may be inefficient, written incorrectly or entirely may not work.
 
 ***
 

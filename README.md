@@ -1,6 +1,6 @@
 # Blackjack Game
 
-A simple terminal-based blackjack game made using Java with a (also terminal-based) prototype Python version.
+A simple terminal-based blackjack game made with Java with a (also terminal-based) prototype Python version.
 
 Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg)
 

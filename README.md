@@ -1,6 +1,6 @@
 # Blackjack Game
 
-A simple terminal-based blackjack game made with Java with a (also terminal-based) prototype Python version.
+A simple terminal-based blackjack game made with Java.
 
 Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg)
 
@@ -10,29 +10,19 @@ Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:
 
 ## Installation and Setup
 
-You only need to install `Main.java`, `Game.java`, `Deck.java` and `Chips.java`. You don't need to install files in the folders in order to play.
+You need to install `Main.java`, `Game.java` and `Deck.java` in order to play.
 
-After you install the files, navigate to their location in terminal using `cd` command. After that, you can run this command to compile the code:
+After you install the files, navigate to their location in terminal then compile the java files:
 
 ```bash
 javac Main.java
 ```
 
-After that, you can run the game with this command:
+After that, you can run the game:
 
 ```bash
 java Main
 ```
-
-### Python Version
-
-For python version, first install `Main.py` and navigate to it's location in terminal using `cd` command. After that you can run this command to run the game:
-
-```bash
-python Main.py
-```
-
-***
 
 ## How to Play Blackjack
 

@@ -6,6 +6,8 @@ Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:
 
 >Please note that I made this project for learning and practising purposes. Codes may be inefficient, written incorrectly or entirely may not work.
 
+>Note: Chips and betting in this game are entirely imaginary and only added to make the game close to a real blackjack game.
+
 ***
 
 ## Installation and Setup

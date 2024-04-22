@@ -2,95 +2,127 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Game {
-    public static boolean gameEnded = true;
-    public static boolean playerBust = false;
+    // Game variables
+    public static String gameWinner = new String();
+    public static boolean gameEnded = false;
     public static boolean dealerReveal = false;
+    public static boolean playerBust = false;
 
+    // Deck variables
     public static ArrayList<String> playerHand = new ArrayList<>();
     public static ArrayList<String> dealerHand = new ArrayList<>();
+    public static String dealerHiddenCard = new String();
 
     public static void startGame() {
-        Chips.newBet();
+        if (Main.enableBets)
+            Main.newBet();
+
         gameEnded = false;
 
-        ArrayList<String> playDeck = Deck.generateDeck();
-        playerHand.add(Deck.drawCard(playDeck));
-        dealerHand.add(Deck.drawCard(playDeck)); // hidden card
-        playerHand.add(Deck.drawCard(playDeck));
-        dealerHand.add(Deck.drawCard(playDeck));
+        ArrayList<String> playDeck = Deck.generateNewDeck();
 
+        dealerHiddenCard = Deck.drawCard(playDeck);
+        dealerHand.add(dealerHiddenCard);
+        playerHand.add(Deck.drawCard(playDeck));
+
+        dealerHand.add(Deck.drawCard(playDeck));
+        playerHand.add(Deck.drawCard(playDeck));
+
+        // Repeat the game steps until a function ends the loop
         while (true) {
-            if (Deck.getHandValue(dealerHand) > 21) {
-                playerBust = true;
+            // Check if player got a blackjack
+            if (Deck.getHandValue(playerHand) == 21) {
+                gameEnded = true;
                 dealerReveal = true;
-                Deck.getStatus();
-                System.out.println("Your hand went over 21. You lost.");
-                Chips.playerChips -= Chips.playerBet;
-                gameEnded = false;
-                break;
-            } else if (Deck.getHandValue(playerHand) == 21) {
-                dealerReveal = true;
-                Deck.getStatus();
-                System.out.println("Blackjack! You win.");
-                Chips.playerChips += (Chips.playerBet * (1.5));
-                gameEnded = false;
+                gameWinner = "Player";
                 break;
             }
 
-            Deck.getStatus();
-            int choice = Main.getInput("1 - Hit   |   2 - Stay   > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
-            if (choice == 1) {
-                playerHand.add(Deck.drawCard(playDeck));
-            } else if (choice == 2) {
+            // Check if player is busted
+            if (Deck.getHandValue(playerHand) > 21) {
+                gameEnded = true;
                 dealerReveal = true;
+                gameWinner = "Dealer";
+                // This variable is used to skip some functions if player is already lost
+                // and so game is already ended
+                playerBust = true;
+                break;
+            }
+
+            // Display current state of hands
+            Deck.getStatus();
+            
+            // Get the player's choice
+            int playerChoice = Main.getInput("\nWhat is your choice? > (1-Hit) or (2-Stand) > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
+            if (playerChoice == 1) {
+                playerHand.add(Deck.drawCard(playDeck));
+            } else {
+                dealerReveal = true;
+                gameEnded = true;
                 break;
             }
         }
 
-        dealerReveal = true;
+        // Game turns are ended now
 
-        if (!playerBust && Deck.getHandValue(dealerHand) < 17 && !gameEnded) {
+        // Draw cards until dealer's hand is above 17 if it is below
+        if (!playerBust && gameEnded && Deck.getHandValue(dealerHand) < 17) {
             while (true) {
+                // Break the loop if dealer's hand is >= 17
                 if (Deck.getHandValue(dealerHand) >= 17) {
                     break;
                 }
+                // Else draw a card
                 dealerHand.add(Deck.drawCard(playDeck));
             }
         }
 
+        // Display current state of hands
         Deck.getStatus();
-        System.out.println("\n");
 
-        if (!playerBust && !gameEnded) {
-            if (Deck.getHandValue(dealerHand) > 21) {
-                System.out.println("Dealer's hand went over 21. You win.");
-                Chips.playerChips += Chips.playerBet;
-            } else if (Deck.getHandValue(playerHand) > Deck.getHandValue(dealerHand)) {
-                System.out.println("You win.");
-                Chips.playerChips += Chips.playerBet;
-            } else if (Deck.getHandValue(playerHand) == Deck.getHandValue(dealerHand)) {
-                System.out.println("It's a tie.");
+        // Decide the game's conclusion
+        if (!playerBust) {
+            int dealerHandValue = Deck.getHandValue(dealerHand);
+            int playerHandValue = Deck.getHandValue(playerHand);
+            if (dealerHandValue > 21) {
+                gameWinner = "Player";
             } else {
-                System.out.println("Dealer wins.");
-                Chips.playerChips -= Chips.playerBet;
+                if (dealerHandValue == 21) {
+                    if (playerHandValue == 21) {
+                        gameWinner = "Tie";
+                    } else {
+                        gameWinner = "Dealer";
+                    }
+                }
+                if (dealerHandValue > playerHandValue) {
+                    gameWinner = "Dealer";
+                } else if (playerHandValue > dealerHandValue) {
+                    gameWinner = "Player";
+                } else if (playerHandValue == dealerHandValue) {
+                    gameWinner = "Tie";
+                }
             }
         }
 
-        System.out.println("Game over.");
-
-        playerBust = false;
-        dealerReveal = false;
-        gameEnded = true;
-
-        while (true) {
-            int replay = Main.getInput("1 - Return to main menu   |   2 - Exit the game   > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
-            if (replay == 2) {
-                System.out.println("\nThank you for playing!\n");
-                System.exit(0);
+        // Display the winner
+        switch (gameWinner) {
+            case "Player":
+                System.out.println("You won!");
                 break;
-            } else if (replay == 1) {
-                return;
-            }
+            case "Dealer":
+                System.out.println("Dealer won!");
+                break;
+            case "Tie":
+                System.out.println("It's a tie!");
+                break;
         }
+
+        // Reset variables
+        dealerReveal = false;
+        playerBust = false;
+        gameEnded = true;
+        
+        // End the game
+        System.exit(0);
     }
 }

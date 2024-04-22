@@ -5,25 +5,23 @@ import java.util.HashMap;
 public class Deck {
     public static String[] ranks = new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
     public static String[] suits = new String[] { "Hearts", "Diamonds", "Clubs", "Spades" };
-    public static HashMap<String, Integer> values = new HashMap<String, Integer>();
+    public static HashMap<String, Integer> cardValues = new HashMap<String, Integer>() {{
+        put("2", 2);
+        put("3", 3);
+        put("4", 4);
+        put("5", 5);
+        put("6", 6);
+        put("7", 7);
+        put("8", 8);
+        put("9", 9);
+        put("10", 10);
+        put("Jack", 10);
+        put("Queen", 10);
+        put("King", 10);
+        put("Ace", 11);
+    }};
 
-    static {
-        values.put("2", 2);
-        values.put("3", 3);
-        values.put("4", 4);
-        values.put("5", 5);
-        values.put("6", 6);
-        values.put("7", 7);
-        values.put("8", 8);
-        values.put("9", 9);
-        values.put("10", 10);
-        values.put("Jack", 10);
-        values.put("Queen", 10);
-        values.put("King", 10);
-        values.put("Ace", 11);
-    }
-
-    public static ArrayList<String> generateDeck() {
+    public static ArrayList<String> generateNewDeck() {
         ArrayList<String> newDeck = new ArrayList<String>();
         for (String rank : ranks) {
             for (String suit : suits) {
@@ -40,15 +38,15 @@ public class Deck {
 
     public static int getCardValue(String card) {
         String cardRank = card.split(" ")[0];
-        int value = 0;
+        int cardValue = 0;
         if ("JackQueenKing".contains(cardRank)) {
-            value = 10;
+            cardValue = 10;
         } else if (cardRank.equals("Ace")) {
-            value = 11;
+            cardValue = 11;
         } else {
-            value = values.get(cardRank);
+            cardValue = cardValues.get(cardRank);
         }
-        return value;
+        return cardValue;
     }
 
     public static int getHandValue(ArrayList<String> deck) {
@@ -63,9 +61,9 @@ public class Deck {
         if (handValue > 21) {
             while (aceAmount > 0) {
                 handValue -= 10;
+                aceAmount--;
                 if (handValue == 21)
                     break;
-                aceAmount--;
             }
         }
         return handValue;
@@ -73,28 +71,13 @@ public class Deck {
 
     public static void getStatus() {
         System.out.println("\n");
-
-        //Frame.updateFrame();
-
-        ArrayList<String> dealer = Game.dealerHand;
-        ArrayList<String> player = Game.playerHand;
-        String hiddenCard = dealer.get(0);
-
-        if (Game.dealerReveal == false) {
-            dealer.remove(hiddenCard);
-            System.out.println("Dealer's Hand > " + "[Hidden] " + dealer + " (" + getHandValue(dealer) + "pts)");
-            System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
-            dealer.add(0, hiddenCard);
-        } else if (Game.dealerReveal == true) {
-            System.out.println("Dealer's Hand > " + dealer + " (" + getHandValue(dealer) + "pts)");
-            System.out.println("Player's Hand > " + player + " (" + getHandValue(player) + "pts)");
+        if (Game.dealerReveal) {
+            System.out.println("Dealer's hand > " + Game.dealerHand + " (Value: " + getHandValue(Game.dealerHand) + ")");
+        } else {
+            Game.dealerHand.remove(Game.dealerHiddenCard);
+            System.out.println("Dealer's hand > [Hidden Card], " + Game.dealerHand + " (Value: " + getHandValue(Game.dealerHand) + ")");
+            Game.dealerHand.add(0, Game.dealerHiddenCard);
         }
-    }
-
-    public static String getCardImage(String card) {
-        String cardRank = card.toLowerCase().split(" ")[0];
-        String fileName = card.toLowerCase().replaceAll(" ", "_");
-        String path = "Blackjack/cards/" + cardRank + "/" + fileName + ".png";
-        return path;
+        System.out.println("Your's hand > " + Game.playerHand + " (Value: " + getHandValue(Game.playerHand) + ")");
     }
 }

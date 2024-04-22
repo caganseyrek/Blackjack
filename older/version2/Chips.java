@@ -1,3 +1,4 @@
+package version2;
 public class Chips {
     public static int playerChips = 250;
     public static int playerBet = 0;

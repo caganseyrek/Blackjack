@@ -1,4 +1,4 @@
-# Blackjack Game
+# Blackjack
 
 A simple terminal-based blackjack game made with Java.
 

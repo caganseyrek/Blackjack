@@ -72,12 +72,12 @@ public class Deck {
     public static void getStatus() {
         System.out.println("\n");
         if (Game.dealerReveal) {
-            System.out.println("Dealer's hand > " + Game.dealerHand + " (Value: " + getHandValue(Game.dealerHand) + ")");
+            System.out.println("Dealer's hand (Value: " + getHandValue(Game.dealerHand) + ")\n" + Game.dealerHand);
         } else {
             Game.dealerHand.remove(Game.dealerHiddenCard);
-            System.out.println("Dealer's hand > [Hidden Card], " + Game.dealerHand + " (Value: " + getHandValue(Game.dealerHand) + ")");
+            System.out.println("Dealer's hand (Value:"  + getHandValue(Game.dealerHand) + ")\n> [Hidden Card], " + Game.dealerHand);
             Game.dealerHand.add(0, Game.dealerHiddenCard);
         }
-        System.out.println("Your's hand > " + Game.playerHand + " (Value: " + getHandValue(Game.playerHand) + ")");
+        System.out.println("\nYour's hand (Value: " + getHandValue(Game.playerHand) + ")\n> " + Game.playerHand);
     }
 }

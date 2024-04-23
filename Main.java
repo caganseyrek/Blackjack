@@ -7,8 +7,8 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     // Preferences
-    public static Boolean enableBets = false;
-    public static Boolean autoReplay = false;
+    public static boolean enableBets = false;
+    public static boolean autoReplay = false;
 
     // Bet related variables
     public static int playerChips = 250;
@@ -44,7 +44,7 @@ public class Main {
     // Bet function
     public static void newBet() {
         while (true) {
-            int amount = getInput("How many chips you want to bet? " + "(Balance:" + playerChips + "): ");
+            int amount = getInput("How many chips you want to bet? " + "(Balance:" + playerChips + ") > ");
             if (playerChips < amount) {
                 System.out.println("You don't have enough chips. Add some chips to your balance first.\n");
                 adjustChips("add");
@@ -62,7 +62,7 @@ public class Main {
     public static void adjustChips(String operation) {
         switch (operation) {
             case "add":
-                int amount = getInput("How many chips you want to add: ");
+                int amount = getInput("How many chips you want to add > ");
                 playerChips += amount;
                 break;
             case "blackjack":
@@ -77,22 +77,21 @@ public class Main {
         }
     }
 
-    /*
-    // Replay
-    public static void replay() {
-        Game.startGame();
+    public static void clearTerminal() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println("\n");
+        }
     }
-    */
 
     // Main    
     public static void main(String[] args) {
         while (true) {
-            String betState = enableBets ? "enabled" : "disabled";
-            //String autoReplayState = autoReplay ? "enabled" : "disabled";
-            System.out.println("---\nWelcome to Blackjack!\n---");
-            System.out.println("Enter 1 to start a new game!\n");
-            System.out.println("Game Preferences\n  - Betting     > " + betState + " (Enter 2 to toggle)"); //\n  - Auto Replay > " + autoReplayState + " (Enter 3 to toggle)
-            int playerChoice = Main.getInput("\nEnter: ", new ArrayList<Integer>(Arrays.asList(1, 2))); // 3
+            clearTerminal();
+            String betState = enableBets ? "enabled " : "disabled";
+            String autoReplayState = autoReplay ? "enabled " : "disabled";
+            System.out.println("---\nWelcome to Blackjack!\n---\nEnter 1 to start a new game!\n");
+            System.out.println("Game Preferences\n  - Betting     > " + betState + " (Enter 2 to toggle)\n  - Auto Replay > " + autoReplayState + " (Enter 3 to toggle)");
+            int playerChoice = Main.getInput("\nEnter > ", new ArrayList<Integer>(Arrays.asList(1, 2, 3)));
             switch (playerChoice) {
                 case 1:
                     Game.startGame();
@@ -100,11 +99,9 @@ public class Main {
                 case 2:
                     enableBets = true;
                     break;
-                /*
                 case 3:
                     autoReplay = true;
                     break;
-                */
             }
             System.out.println("\n\n");
         }

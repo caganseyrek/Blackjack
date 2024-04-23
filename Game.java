@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 public class Game {
     // Game variables
     public static String gameWinner = new String();
     public static boolean gameEnded = false;
     public static boolean dealerReveal = false;
+    public static boolean playerBlackjack = false;
     public static boolean playerBust = false;
 
     // Deck variables
@@ -35,6 +37,7 @@ public class Game {
                 gameEnded = true;
                 dealerReveal = true;
                 gameWinner = "Player";
+                playerBlackjack = true;
                 break;
             }
 
@@ -50,10 +53,11 @@ public class Game {
             }
 
             // Display current state of hands
+            Main.clearTerminal();
             Deck.getStatus();
             
             // Get the player's choice
-            int playerChoice = Main.getInput("\nWhat is your choice? > (1-Hit) or (2-Stand) > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
+            int playerChoice = Main.getInput("\nWhat is your choice? (1-Hit) or (2-Stand) > ", new ArrayList<Integer>(Arrays.asList(1, 2)));
             if (playerChoice == 1) {
                 playerHand.add(Deck.drawCard(playDeck));
             } else {
@@ -78,6 +82,7 @@ public class Game {
         }
 
         // Display current state of hands
+        Main.clearTerminal();
         Deck.getStatus();
 
         // Decide the game's conclusion
@@ -108,21 +113,52 @@ public class Game {
         switch (gameWinner) {
             case "Player":
                 System.out.println("You won!");
+                if (Main.enableBets) {
+                    if (playerBlackjack) {
+                        Main.adjustChips("blackjack");
+                    } else {
+                        Main.adjustChips("won");
+                    }
+                }
                 break;
             case "Dealer":
                 System.out.println("Dealer won!");
+                if (Main.enableBets)
+                    Main.adjustChips("lost");
                 break;
             case "Tie":
                 System.out.println("It's a tie!");
+                if (Main.enableBets)
+                    Main.adjustChips("tie");
                 break;
+        }
+        if (Main.enableBets) {
+            System.out.println("\nYour new balance: " + Main.playerChips);
+        } else {
+            System.out.println("\n");
         }
 
         // Reset variables
+        playerHand.clear();
+        dealerHand.clear();
+        dealerHiddenCard = "";
+        
+        gameWinner = "";
         dealerReveal = false;
         playerBust = false;
         gameEnded = true;
         
         // End the game
-        System.exit(0);
+        if (Main.autoReplay) {
+            try {
+                System.out.println("New game will start in 5 seconds.");
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            startGame();
+        } else {
+            System.exit(0);
+        }
     }
 }

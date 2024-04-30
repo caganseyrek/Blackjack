@@ -2,11 +2,11 @@
 
 A simple terminal-based blackjack game made with Java.
 
-Card images' source can be found [here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg)
-
 >Chips and betting in this game are entirely imaginary and only added to make the game close to a real blackjack game.
 
-***
+>I added card images for a GUI but didn't use them, but left them in the repository. These cards' source can be found [in here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg).
+
+---
 
 ## Installation and Setup
 
@@ -23,6 +23,8 @@ After that, you can run the game:
 ```bash
 java Main
 ```
+
+---
 
 ## How to Play Blackjack
 
@@ -42,7 +44,3 @@ java Main
    * When you stay, your turn in round is over and dealer reveals their face-down card. If dealer's hand is lower than 17, they draw until they reach or go over 17 points. If dealer is went over 21, you win the round.
    
  * After that whoever's hand is greater wins (between player and dealer). If both player's and dealer's hands are equal in points, it's a tie.
-
----
-
->Please note that I made this project for learning and practising purposes. Codes may be inefficient, written incorrectly or entirely may not work.

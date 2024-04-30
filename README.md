@@ -4,7 +4,7 @@ A simple terminal-based blackjack game made with Java.
 
 >Chips and betting in this game are entirely imaginary and only added to make the game close to a real blackjack game.
 
->I added card images for a GUI but didn't use them, but left them in the repository. These cards' source can be found [in here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg).
+>I added card images for a GUI but didn't use them and left them in the repository. These cards' source can be found [in here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg).
 
 ---
 

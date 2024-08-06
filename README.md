@@ -2,29 +2,25 @@
 
 A simple terminal-based blackjack game made with Java.
 
->Chips and betting in this game are entirely imaginary and only added to make the game close to a real blackjack game.
+Chips and betting in this game are entirely imaginary and only added to make the game close to a real blackjack game.
 
 >I added card images for a GUI but didn't use them and left them in the repository. These cards' source can be found [in here](https://commons.wikimedia.org/wiki/File:English_pattern_playing_cards_deck.svg).
 
----
-
 ## Installation and Setup
 
-You need to install `Main.java`, `Game.java` and `Deck.java` in order to play.
+First, clone the repository then navigate to folder of the cloned repository from the command line:
 
-After you install the files, navigate to their location in terminal then compile the java files:
+```bash
+git clone https://github.com/caganseyrek/Blackjack.git
+cd path/to/Blackjak
+```
+
+Finally, compile and run the project:
 
 ```bash
 javac Main.java
-```
-
-After that, you can run the game:
-
-```bash
 java Main
 ```
-
----
 
 ## How to Play Blackjack
 

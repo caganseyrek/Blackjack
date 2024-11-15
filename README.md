@@ -40,3 +40,8 @@ java Main
    * When you stay, your turn in round is over and dealer reveals their face-down card. If dealer's hand is lower than 17, they draw until they reach or go over 17 points. If dealer is went over 21, you win the round.
    
  * After that whoever's hand is greater wins (between player and dealer). If both player's and dealer's hands are equal in points, it's a tie.
+
+## License
+
+This project is open-source and licensed under [MIT License](https://github.com/caganseyrek/Blackjack/blob/main/LICENSE).
+

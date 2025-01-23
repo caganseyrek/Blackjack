@@ -12,7 +12,7 @@ First, clone the repository then navigate to folder of the cloned repository fro
 
 ```bash
 git clone https://github.com/caganseyrek/Blackjack.git
-cd path/to/Blackjak
+cd path/to/Blackjack
 ```
 
 Finally, compile and run the project:
